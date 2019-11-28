@@ -41,6 +41,7 @@ app.post('/move', (request, response) => {
   console.log("Pauly");
   var x = request.body.you.body[0].x;
   var y = request.body.you.body[0].y;
+
   var Allmovements = ['up','down','left','right'];
   var AllrandomNumber = Math.floor(Math.random()*Allmovements.length);
 
@@ -49,7 +50,7 @@ app.post('/move', (request, response) => {
 
   var Ymovements = ['up','down'];
   var YrandomNumber = Math.floor(Math.random()*Ymovements.length);
-
+  currentMove = Allmovements[AllrandomNumber]
 
   if (y = 0) {
     currentMove = 'up';
