@@ -37,9 +37,13 @@ app.post('/start', (request, response) => {
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
+  var movements = ['up','down','left','right'];
+  var randomNumber = Math.floor(Math.random()*movements.length);
+  var currentMove = movements[randomNumber];
+
   // Response data
   const data = {
-    move: 'up', // one of: ['up','down','left','right']
+    move: currentMove, // one of: ['up','down','left','right']
   }
 
   return response.json(data)
