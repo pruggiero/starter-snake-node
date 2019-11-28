@@ -121,12 +121,38 @@ const possibleMovements = (snakebody, othersnakes) => {
     });
   });
 
-  // if (possibleMovements === []) {
-  //   possibleMovements['up'];
-  // }
-  console.log("Pauly2");
+  var futurevision = possibleMovements.map(x => x)
+
+  othersnakes.forEach(snake => {
+    snake.body.forEach(cordinate => {
+      if (snakebody[0].x !== cordinate.x) {
+        if (snakebody[0].x + 2 === cordinate.x && snakebody[0].y === cordinate.y) {
+          futurevision = removePossibleMovement(futurevision, 'right');
+        }
+        if (snakebody[0].x - 2 === cordinate.x && snakebody[0].y === cordinate.y) {
+          futurevision = removePossibleMovement(futurevision, 'left');
+        }
+      }
+      if (snakebody[0].y !== cordinate.y) {
+        if (snakebody[0].y + 2 === cordinate.y && snakebody[0].x === cordinate.x) {
+          futurevision = removePossibleMovement(futurevision, 'down');
+        }
+        if (snakebody[0].y - 2 === cordinate.y && snakebody[0].x === cordinate.x) {
+          futurevision = removePossibleMovement(futurevision, 'up');
+        }
+      }
+    });
+  });
+
+  console.log("future");
+  console.log(futurevision);
+  console.log("possibleMovements");
   console.log(possibleMovements);
-  return randomMovement(possibleMovements);
+  if (futurevision === []) {
+    return randomMovement(possibleMovements);
+  } else {
+    return randomMovement(futurevision);
+  }
 }
 
 // Handle POST request to '/move'
