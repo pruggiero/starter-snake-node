@@ -39,6 +39,56 @@ const randomMovement = (possibleMovements) => {
   return possibleMovements[randomNumber];
 }
 
+const removePossibleMovement = (possibleMovements, movement) => {
+  var index = possibleMovements.indexOf(movement);
+  console.log(possibleMovements);
+  console.log(movement);
+  if (index > -1) {
+    var newarray = possibleMovements.splice(index, 1);
+    return newarray;
+  }
+}
+
+const possibleMovements = (snakebody) => {
+  var possibleMovements = ['up','down','left','right'];
+  // snakebody.forEach(cordinate => 
+  //   cordinate.x
+  // );
+  if (snakebody[0].y === 0) {
+    possibleMovements = removePossibleMovement(possibleMovements, 'up');
+  }
+
+  if (snakebody[0].y === 10) {
+    possibleMovements = removePossibleMovement(possibleMovements, 'down');
+  }
+
+  if (snakebody[0].x === 0) {
+    possibleMovements = removePossibleMovement(possibleMovements, 'left');
+  }
+
+  if (snakebody[0].x === 10) {
+    possibleMovements = removePossibleMovement(possibleMovements, 'right');
+  }
+
+  if (snakebody[0].x === snakebody[1].x + 1) {
+    possibleMovements = removePossibleMovement(possibleMovements, 'right');
+  }
+  if (snakebody[0].x === snakebody[1].x - 1) {
+    possibleMovements = removePossibleMovement(possibleMovements, 'left');
+  }
+  if (snakebody[0].y === snakebody[1].y + 1) {
+    possibleMovements = removePossibleMovement(possibleMovements, 'up');
+  }
+  if (snakebody[0].y === snakebody[1].y - 1) {
+    possibleMovements = removePossibleMovement(possibleMovements, 'down');
+  }
+
+  if (possibleMovements === []) {
+    possibleMovements['up'];
+  }
+  return randomMovement(possibleMovements);
+}
+
 // Handle POST request to '/move'
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
@@ -48,35 +98,8 @@ app.post('/move', (request, response) => {
   var x = request.body.you.body[0].x;
   var y = request.body.you.body[0].y;
 
-  var currentMove = randomMovement(['up','down','left','right']);
+  var currentMove = possibleMovements(request.body.you.body);
 
-  if (y === 0) {
-    currentMove = randomMovement(['left','right','down']);
-    if (request.body.you.body[1].y === 1) {
-      currentMove = randomMovement(['left','right']);
-    }
-  }
-
-  if (y === 10) {
-    currentMove = randomMovement(['left','right','up']);
-    if (request.body.you.body[1].y === 9) {
-      currentMove = randomMovement(['left','right']);
-    }
-  }
-
-  if (x === 0) {
-    currentMove = randomMovement(['down','right','up']);
-    if (request.body.you.body[1].x === 1) {
-      currentMove = randomMovement(['down','up']);
-    }
-  }
-
-  if (x === 10) {
-    currentMove = randomMovement(['left','down','up']);
-    if (request.body.you.body[1].x === 9) {
-      currentMove = randomMovement(['down','up']);
-    }
-  }
   console.log(currentMove);
   // Response data
   const data = {
