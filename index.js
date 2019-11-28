@@ -44,10 +44,10 @@ const removePossibleMovement = (possibleMovements, movement) => {
   console.log(possibleMovements);
   console.log(movement);
   if (index > -1) {
-    var newarray = possibleMovements.splice(index, 1);
+    possibleMovements.splice(index, 1);
     console.log("Pauly");
-    console.log(newarray);
-    return newarray;
+    console.log(possibleMovements);
+    return possibleMovements;
   }
 }
 
