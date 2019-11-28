@@ -183,8 +183,8 @@ app.post('/move', (request, response) => {
 
   var movements = possibleMovements(request.body.you.body, request.body.board.snakes, request.body.board);
   var currentMove = randomMovement(movements, request.body.you, request.body.board.food);
-  // console.log(movements);
-  // console.log(currentMove);
+  console.log(movements);
+  console.log(currentMove);
   // Response data
   const data = {
     move: currentMove, // one of: ['up','down','left','right']
