@@ -148,20 +148,20 @@ const possibleMovements = (snakebody, othersnakes, board) => {
   var superfuturevision = possibleMovements.map(x => x);
 
   othersnakes.forEach(snake => {
-    if (snakebody[0].x !== snake[0].x && snakebody[0].y !== snake[0].y) {
-      if (snakebody[0].y - 1 === snake[0].y && snakebody[0].x === snake[0].x - 1) {
+    if (snakebody[0].x !== snake.body[0].x && snakebody[0].y !== snake.body[0].y) {
+      if (snakebody[0].y - 1 === snake.body[0].y && snakebody[0].x === snake.body[0].x - 1) {
         superfuturevision = removePossibleMovement(superfuturevision, 'up');
         superfuturevision = removePossibleMovement(superfuturevision, 'left');
       }
-      if (snakebody[0].y - 1 === snake[0].y && snakebody[0].x === snake[0].x + 1) {
+      if (snakebody[0].y - 1 === snake.body[0].y && snakebody[0].x === snake.body[0].x + 1) {
         superfuturevision = removePossibleMovement(superfuturevision, 'up');
         superfuturevision = removePossibleMovement(superfuturevision, 'right');
       }
-      if (snakebody[0].y + 1 === snake[0].y && snakebody[0].x === snake[0].x - 1) {
+      if (snakebody[0].y + 1 === snake.body[0].y && snakebody[0].x === snake.body[0].x - 1) {
         superfuturevision = removePossibleMovement(superfuturevision, 'down');
         superfuturevision = removePossibleMovement(superfuturevision, 'left');
       }
-      if (snakebody[0].y + 1 === snake[0].y && snakebody[0].x === snake[0].x + 1) {
+      if (snakebody[0].y + 1 === snake.body[0].y && snakebody[0].x === snake.body[0].x + 1) {
         superfuturevision = removePossibleMovement(superfuturevision, 'down');
         superfuturevision = removePossibleMovement(superfuturevision, 'right');
       }
