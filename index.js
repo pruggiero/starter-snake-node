@@ -90,6 +90,7 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     possibleMovements = removePossibleMovement(possibleMovements, 'up');
   }
 
+  console.log(board.height);
   if (snakebody[0].y === board.height - 1) {
     possibleMovements = removePossibleMovement(possibleMovements, 'down');
   }
