@@ -50,8 +50,7 @@ const randomMovement = (possibleMovements, snake, food) => {
   if (location[0].y >= 5 && possibleMovements.indexOf('up') !== -1) {
     movement = 'up';
   }
-  console.log("Before food");
-  console.log(movement);
+
   if (food.length > 0 && snake.health < 15) {
     if (food[0].y !== location[0].y) {
       if (food[0].y < location[0].y && possibleMovements.indexOf('up') !== -1) {
@@ -71,8 +70,7 @@ const randomMovement = (possibleMovements, snake, food) => {
       }
     }
   }
-  console.log("after food");
-  console.log(movement);
+
   return movement;
 }
 
@@ -178,12 +176,12 @@ const possibleMovements = (snakebody, othersnakes) => {
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
-  console.log(request.body.you.body);
+  // console.log(request.body.you.body);
 
   var movements = possibleMovements(request.body.you.body, request.body.board.snakes);
   var currentMove = randomMovement(movements, request.body.you, request.body.board.food);
-  console.log(movements);
-  console.log(currentMove);
+  // console.log(movements);
+  // console.log(currentMove);
   // Response data
   const data = {
     move: currentMove, // one of: ['up','down','left','right']
