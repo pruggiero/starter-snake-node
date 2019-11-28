@@ -88,6 +88,8 @@ const possibleMovements = (snakebody) => {
   // if (possibleMovements === []) {
   //   possibleMovements['up'];
   // }
+  console.log("Pauly2");
+  console.log(possibleMovements);
   return randomMovement(possibleMovements);
 }
 
