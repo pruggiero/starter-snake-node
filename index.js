@@ -45,10 +45,8 @@ const removePossibleMovement = (possibleMovements, movement) => {
   console.log(movement);
   if (index > -1) {
     possibleMovements.splice(index, 1);
-    console.log("Pauly");
-    console.log(possibleMovements);
-    return possibleMovements;
   }
+  return possibleMovements;
 }
 
 const possibleMovements = (snakebody) => {
