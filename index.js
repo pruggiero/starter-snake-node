@@ -36,16 +36,16 @@ app.post('/start', (request, response) => {
 })
 const randomMovement = (possibleMovements, location) => {
   var randomNumber = Math.floor(Math.random()*possibleMovements.length);
-  if (location[0].x < 5 && possibleMovements.indexOf('right') === -1) {
+  if (location[0].x < 5 && possibleMovements.indexOf('right') !== -1) {
     return 'right';
   } 
-  else if (location[0].x >= 5 && possibleMovements.indexOf('left') === -1) {
+  else if (location[0].x >= 5 && possibleMovements.indexOf('left') !== -1) {
     return 'left';
   } 
-  else if (location[0].y < 5 && possibleMovements.indexOf('down') === -1) {
+  else if (location[0].y < 5 && possibleMovements.indexOf('down') !== -1) {
     return 'down';
   } 
-  else if (location[0].y >= 5 && possibleMovements.indexOf('up') === -1) {
+  else if (location[0].y >= 5 && possibleMovements.indexOf('up') !== -1) {
     return 'up';
   } else {
     return possibleMovements[randomNumber];
