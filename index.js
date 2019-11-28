@@ -168,7 +168,7 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     }
   });
 
-  var futurevision = possibleMovements.map(x => x);
+  var futurevision = superfuturevision.map(x => x);
 
   othersnakes.forEach(snake => {
     snake.body.forEach(cordinate => {
@@ -191,10 +191,10 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     });
   });
 
-  if (superfuturevision.length > 0) {
-    return superfuturevision;
-  } else if (futurevision.length > 0) {
+  if (futurevision.length > 0) {
     return futurevision;
+  } else if (superfuturevision.length > 0) {
+    return superfuturevision;
   } else {
     return possibleMovements;   
   }
