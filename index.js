@@ -145,7 +145,30 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     });
   });
 
-  var futurevision = possibleMovements.map(x => x)
+  var superfuturevision = possibleMovements.map(x => x);
+
+  othersnakes.forEach(snake => {
+    if (snakebody[0].x !== snake[0].x && snakebody[0].y !== snake[0].y) {
+      if (snakebody[0].y - 1 === snake[0].y && snakebody[0].x === snake[0].x - 1) {
+        superfuturevision = removePossibleMovement(superfuturevision, 'up');
+        superfuturevision = removePossibleMovement(superfuturevision, 'left');
+      }
+      if (snakebody[0].y - 1 === snake[0].y && snakebody[0].x === snake[0].x + 1) {
+        superfuturevision = removePossibleMovement(superfuturevision, 'up');
+        superfuturevision = removePossibleMovement(superfuturevision, 'right');
+      }
+      if (snakebody[0].y + 1 === snake[0].y && snakebody[0].x === snake[0].x - 1) {
+        superfuturevision = removePossibleMovement(superfuturevision, 'down');
+        superfuturevision = removePossibleMovement(superfuturevision, 'left');
+      }
+      if (snakebody[0].y + 1 === snake[0].y && snakebody[0].x === snake[0].x + 1) {
+        superfuturevision = removePossibleMovement(superfuturevision, 'down');
+        superfuturevision = removePossibleMovement(superfuturevision, 'right');
+      }
+    }
+  });
+
+  var futurevision = possibleMovements.map(x => x);
 
   othersnakes.forEach(snake => {
     snake.body.forEach(cordinate => {
@@ -168,10 +191,12 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     });
   });
 
-  if (futurevision.length <= 0) {
-    return possibleMovements;
-  } else {
+  if (superfuturevision.length > 0) {
+    return superfuturevision;
+  } else if (futurevision.length > 0) {
     return futurevision;
+  } else {
+    return possibleMovements;   
   }
 }
 
