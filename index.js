@@ -55,19 +55,18 @@ const randomMovement = (possibleMovements, location, food) => {
   if (food[0].y > location[0].y && possibleMovements.indexOf('up') !== -1) {
     movement = 'up';
   }
-  if (food[0].x < location[0].x && possibleMovements.indexOf('right') !== -1) {
-    movement = 'right';
-  }
-  if (food[0].x > location[0].x && possibleMovements.indexOf('left') !== -1) {
+  if (food[0].x < location[0].x && possibleMovements.indexOf('left') !== -1) {
     movement = 'left';
+  }
+  if (food[0].x > location[0].x && possibleMovements.indexOf('right') !== -1) {
+    movement = 'right';
   }
   return movement;
 }
 
 const removePossibleMovement = (possibleMovements, movement) => {
   var index = possibleMovements.indexOf(movement);
-  console.log(possibleMovements);
-  console.log(movement);
+
   if (index > -1) {
     possibleMovements.splice(index, 1);
   }
@@ -171,6 +170,7 @@ app.post('/move', (request, response) => {
 
   var movements = possibleMovements(request.body.you.body, request.body.board.snakes);
   var currentMove = randomMovement(movements, request.body.you.body, request.body.board.food);
+  console.log(movements);
   console.log(currentMove);
   // Response data
   const data = {
