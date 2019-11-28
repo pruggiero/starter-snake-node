@@ -157,8 +157,8 @@ app.post('/move', (request, response) => {
 
   console.log(request.body.you.body);
 
-  var possibleMovements = possibleMovements(request.body.you.body, request.body.board.snakes);
-  var currentMove = randomMovement(possibleMovements, request.body.you.body);
+  var movements = possibleMovements(request.body.you.body, request.body.board.snakes);
+  var currentMove = randomMovement(movements, request.body.you.body);
   console.log(currentMove);
   // Response data
   const data = {
