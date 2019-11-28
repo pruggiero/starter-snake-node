@@ -53,19 +53,19 @@ app.post('/move', (request, response) => {
   var currentMove = Allmovements[AllrandomNumber];
 
   if (y === 0) {
-    currentMove = 'up';
-  }
-
-  if (y === 10) {
     currentMove = 'down';
   }
 
+  if (y === 10) {
+    currentMove = 'up';
+  }
+
   if (x === 0) {
-    currentMove = 'left';
+    currentMove = 'right';
   }
 
   if (x === 10) {
-    currentMove = 'right';
+    currentMove = 'left';
   }
   console.log(currentMove);
   // Response data
