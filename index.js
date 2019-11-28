@@ -37,6 +37,8 @@ app.post('/start', (request, response) => {
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
+  console.log(response);
+  console.log("Pauly");
   var movements = ['up','down','left','right'];
   var randomNumber = Math.floor(Math.random()*movements.length);
   var currentMove = movements[randomNumber];
