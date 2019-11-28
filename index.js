@@ -51,7 +51,7 @@ const randomMovement = (possibleMovements, snake, food) => {
     movement = 'up';
   }
 
-  if (food.length > 0 && snake.health < 35) {
+  if (food.length > 0 && snake.health < 90) {
     if (food[0].y !== location[0].y) {
       if (food[0].y < location[0].y && possibleMovements.indexOf('up') !== -1) {
         movement = 'up';
