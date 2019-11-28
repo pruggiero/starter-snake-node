@@ -49,6 +49,8 @@ const randomMovement = (possibleMovements, location, food) => {
   if (location[0].y >= 5 && possibleMovements.indexOf('up') !== -1) {
     movement = 'up';
   }
+  console.log("Before food");
+  console.log(movement);
   if (food[0].y < location[0].y && possibleMovements.indexOf('down') !== -1) {
     movement = 'down';
   }
@@ -61,6 +63,8 @@ const randomMovement = (possibleMovements, location, food) => {
   if (food[0].x > location[0].x && possibleMovements.indexOf('right') !== -1) {
     movement = 'right';
   }
+  console.log("after food");
+  console.log(movement);
   return movement;
 }
 
