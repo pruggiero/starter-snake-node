@@ -98,22 +98,22 @@ const possibleMovements = (snakebody, othersnakes) => {
     }
   });
 
-  // othersnakes.forEach(snake => {
-  //   snake.body.forEach(cordinate => {
-  //     if (snakebody[0].x === cordinate.x + 1) {
-  //       possibleMovements = removePossibleMovement(possibleMovements, 'left');
-  //     }
-  //     if (snakebody[0].x === cordinate.x - 1) {
-  //       possibleMovements = removePossibleMovement(possibleMovements, 'right');
-  //     }
-  //     if (snakebody[0].y === cordinate.y + 1) {
-  //       possibleMovements = removePossibleMovement(possibleMovements, 'up');
-  //     }
-  //     if (snakebody[0].y === cordinate.y - 1) {
-  //       possibleMovements = removePossibleMovement(possibleMovements, 'down');
-  //     }
-  //   });
-  // });
+  othersnakes.forEach(snake => {
+    snake.body.forEach(cordinate => {
+      if (snakebody[0].x === cordinate.x + 1) {
+        possibleMovements = removePossibleMovement(possibleMovements, 'left');
+      }
+      if (snakebody[0].x === cordinate.x - 1) {
+        possibleMovements = removePossibleMovement(possibleMovements, 'right');
+      }
+      if (snakebody[0].y === cordinate.y + 1) {
+        possibleMovements = removePossibleMovement(possibleMovements, 'up');
+      }
+      if (snakebody[0].y === cordinate.y - 1) {
+        possibleMovements = removePossibleMovement(possibleMovements, 'down');
+      }
+    });
+  });
 
   // if (possibleMovements === []) {
   //   possibleMovements['up'];
