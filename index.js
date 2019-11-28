@@ -168,7 +168,7 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     });
   });
 
-  if (futurevision === []) {
+  if (futurevision.length <= 0) {
     return possibleMovements;
   } else {
     return futurevision;
