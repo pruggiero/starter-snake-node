@@ -39,9 +39,33 @@ app.post('/move', (request, response) => {
 
   console.log(request.body.you.body[0]);
   console.log("Pauly");
-  var movements = ['up','down','left','right'];
-  var randomNumber = Math.floor(Math.random()*movements.length);
-  var currentMove = movements[randomNumber];
+  var x = request.body.you.body[0].x;
+  var y = request.body.you.body[0].y;
+  var Allmovements = ['up','down','left','right'];
+  var AllrandomNumber = Math.floor(Math.random()*Allmovements.length);
+
+  var Xmovements = ['left','right'];
+  var XrandomNumber = Math.floor(Math.random()*Xmovements.length);
+
+  var Ymovements = ['up','down'];
+  var YrandomNumber = Math.floor(Math.random()*Ymovements.length);
+
+
+  if (y = 0) {
+    currentMove = 'down'
+  }
+
+  if (y = 11) {
+    currentMove = 'up'
+  }
+
+  if (x = 0) {
+    currentMove = 'right'
+  }
+
+  if (x = 11) {
+    currentMove = 'left'
+  }
 
   // Response data
   const data = {
