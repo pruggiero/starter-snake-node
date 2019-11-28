@@ -37,35 +37,36 @@ app.post('/start', (request, response) => {
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
-  console.log(request.body.you.body[0]);
+  console.log(request.body.you.body);
   console.log("Pauly");
   var x = request.body.you.body[0].x;
   var y = request.body.you.body[0].y;
-
   var Allmovements = ['up','down','left','right'];
   var AllrandomNumber = Math.floor(Math.random()*Allmovements.length);
-
-  var Xmovements = ['left','right'];
-  var XrandomNumber = Math.floor(Math.random()*Xmovements.length);
-
-  var Ymovements = ['up','down'];
-  var YrandomNumber = Math.floor(Math.random()*Ymovements.length);
   var currentMove = Allmovements[AllrandomNumber];
 
   if (y === 0) {
-    currentMove = 'down';
+    var movements = ['left','right','down'];
+    var randomnumber = Math.floor(Math.random()*movements.length);
+    currentMove = movements[randomnumber];
   }
 
   if (y === 10) {
-    currentMove = 'up';
+    var movements = ['left','right','up'];
+    var randomnumber = Math.floor(Math.random()*movements.length);
+    currentMove = movements[randomnumber];
   }
 
   if (x === 0) {
-    currentMove = 'right';
+    var movements = ['down','right','up'];
+    var randomnumber = Math.floor(Math.random()*movements.length);
+    currentMove = movements[randomnumber];
   }
 
   if (x === 10) {
-    currentMove = 'left';
+    var movements = ['left','down','up'];
+    var randomnumber = Math.floor(Math.random()*movements.length);
+    currentMove = movements[randomnumber];
   }
   console.log(currentMove);
   // Response data
