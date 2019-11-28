@@ -77,10 +77,10 @@ const possibleMovements = (snakebody) => {
     possibleMovements = removePossibleMovement(possibleMovements, 'right');
   }
   if (snakebody[0].y === snakebody[1].y + 1) {
-    possibleMovements = removePossibleMovement(possibleMovements, 'down');
+    possibleMovements = removePossibleMovement(possibleMovements, 'up');
   }
   if (snakebody[0].y === snakebody[1].y - 1) {
-    possibleMovements = removePossibleMovement(possibleMovements, 'up');
+    possibleMovements = removePossibleMovement(possibleMovements, 'down');
   }
 
   // if (possibleMovements === []) {
