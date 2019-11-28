@@ -178,7 +178,8 @@ app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
   console.log(request.body.you.body);
-
+  console.log('food');
+  console.log(request.body.board.food);
 
   var food = request.body.board.food ? request.body.board.food : [];
   var movements = possibleMovements(request.body.you.body, request.body.board.snakes);
