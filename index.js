@@ -38,6 +38,7 @@ app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
   console.log(request.body.you.body[0]);
+  console.log(currentMove);
   console.log("Pauly");
   var x = request.body.you.body[0].x;
   var y = request.body.you.body[0].y;
