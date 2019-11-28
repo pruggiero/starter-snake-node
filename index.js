@@ -27,7 +27,7 @@ app.post('/start', (request, response) => {
 
   // Response data
   const data = {
-    color: '#0a0a0a',
+    color: '#000000',
   }
 
   return response.json(data)
