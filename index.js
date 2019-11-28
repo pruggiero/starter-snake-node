@@ -34,8 +34,7 @@ app.post('/start', (request, response) => {
 
   return response.json(data)
 })
-const randomMovement = (possibleMovements, snake, board) => {
-  var food = board.food;
+const randomMovement = (possibleMovements, snake, food) => {
   var location = snake.body;
   var randomNumber = Math.floor(Math.random()*possibleMovements.length);
   var movement = possibleMovements[randomNumber];
@@ -84,14 +83,14 @@ const removePossibleMovement = (possibleMovements, movement) => {
   return possibleMovements;
 }
 
-const possibleMovements = (snakebody, othersnakes) => {
+const possibleMovements = (snakebody, othersnakes, board) => {
   var possibleMovements = ['up','down','left','right'];
 
   if (snakebody[0].y === 0) {
     possibleMovements = removePossibleMovement(possibleMovements, 'up');
   }
 
-  if (snakebody[0].y === Integer.parseInt(board.height) - 1) {
+  if (snakebody[0].y === board.height - 1) {
     possibleMovements = removePossibleMovement(possibleMovements, 'down');
   }
 
@@ -99,7 +98,7 @@ const possibleMovements = (snakebody, othersnakes) => {
     possibleMovements = removePossibleMovement(possibleMovements, 'left');
   }
 
-  if (snakebody[0].x === Integer.parseInt(board.width) - 1) {
+  if (snakebody[0].x === board.width - 1) {
     possibleMovements = removePossibleMovement(possibleMovements, 'right');
   }
 
@@ -179,8 +178,8 @@ app.post('/move', (request, response) => {
 
   // console.log(request.body.you.body);
 
-  var movements = possibleMovements(request.body.you.body, request.body.board.snakes);
-  var currentMove = randomMovement(movements, request.body.you, request.body.board);
+  var movements = possibleMovements(request.body.you.body, request.body.board.snakes, request.body.board);
+  var currentMove = randomMovement(movements, request.body.you, request.body.board.food);
   // console.log(movements);
   // console.log(currentMove);
   // Response data
