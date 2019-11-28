@@ -50,7 +50,7 @@ app.post('/move', (request, response) => {
 
   var Ymovements = ['up','down'];
   var YrandomNumber = Math.floor(Math.random()*Ymovements.length);
-  currentMove = Allmovements[AllrandomNumber]
+  currentMove = Allmovements[AllrandomNumber];
 
   if (y = 0) {
     currentMove = 'up';
