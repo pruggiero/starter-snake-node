@@ -84,17 +84,21 @@ const possibleMovements = (snakebody, othersnakes) => {
   snakebody.forEach(cordinate => {
     if (snakebody[0].x !== cordinate.x) {
       if (snakebody[0].x + 1 === cordinate.x) {
+        console.log('remove right');
         possibleMovements = removePossibleMovement(possibleMovements, 'right');
       }
       if (snakebody[0].x - 1 === cordinate.x) {
+        console.log('remove left');
         possibleMovements = removePossibleMovement(possibleMovements, 'left');
       }
     }
     if (snakebody[0].y !== cordinate.y) {
       if (snakebody[0].y + 1 === cordinate.y) {
+        console.log('remove down');
         possibleMovements = removePossibleMovement(possibleMovements, 'down');
       }
       if (snakebody[0].y - 1 === cordinate.y) {
+        console.log('remove up');        console.log('remove right');
         possibleMovements = removePossibleMovement(possibleMovements, 'up');
       }
     }
