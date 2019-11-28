@@ -61,11 +61,11 @@ const randomMovement = (possibleMovements, location, food) => {
   }
 
   if (food[0].x !== location[0].x) {
-    if (food[0].x < location[0].x && possibleMovements.indexOf('right') !== -1) {
-      movement = 'right';
-    }
-    if (food[0].x > location[0].x && possibleMovements.indexOf('left') !== -1) {
+    if (food[0].x < location[0].x && possibleMovements.indexOf('left') !== -1) {
       movement = 'left';
+    }
+    if (food[0].x > location[0].x && possibleMovements.indexOf('right') !== -1) {
+      movement = 'right';
     }
   }
   console.log("after food");
