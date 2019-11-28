@@ -52,19 +52,19 @@ app.post('/move', (request, response) => {
   var YrandomNumber = Math.floor(Math.random()*Ymovements.length);
   var currentMove = Allmovements[AllrandomNumber];
 
-  if (y = 0) {
+  if (y === 0) {
     currentMove = 'up';
   }
 
-  if (y = 10) {
+  if (y === 10) {
     currentMove = 'down';
   }
 
-  if (x = 0) {
+  if (x === 0) {
     currentMove = 'left';
   }
 
-  if (x = 10) {
+  if (x === 10) {
     currentMove = 'right';
   }
   console.log(currentMove);
