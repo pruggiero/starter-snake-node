@@ -34,7 +34,8 @@ app.post('/start', (request, response) => {
 
   return response.json(data)
 })
-const randomMovement = (possibleMovements, location, food) => {
+const randomMovement = (possibleMovements, snake, food) => {
+  var location = snake.body;
   var randomNumber = Math.floor(Math.random()*possibleMovements.length);
   var movement = possibleMovements[randomNumber];
   if (location[0].x < 5 && possibleMovements.indexOf('right') !== -1) {
@@ -51,7 +52,7 @@ const randomMovement = (possibleMovements, location, food) => {
   }
   console.log("Before food");
   console.log(movement);
-  if (food.length > 0) {
+  if (food.length > 0 && snake.health < 15) {
     if (food[0].y !== location[0].y) {
       if (food[0].y < location[0].y && possibleMovements.indexOf('up') !== -1) {
         movement = 'up';
@@ -180,7 +181,7 @@ app.post('/move', (request, response) => {
   console.log(request.body.you.body);
 
   var movements = possibleMovements(request.body.you.body, request.body.board.snakes);
-  var currentMove = randomMovement(movements, request.body.you.body, request.body.board.food);
+  var currentMove = randomMovement(movements, request.body.you, request.body.board.food);
   console.log(movements);
   console.log(currentMove);
   // Response data
