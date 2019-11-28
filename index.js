@@ -34,6 +34,10 @@ app.post('/start', (request, response) => {
 
   return response.json(data)
 })
+const randomMovement = (possibleMovements) => {
+  var randomNumber = Math.floor(Math.random()*possibleMovements.length);
+  return possibleMovements[randomNumber];
+}
 
 // Handle POST request to '/move'
 app.post('/move', (request, response) => {
@@ -43,32 +47,35 @@ app.post('/move', (request, response) => {
   console.log("Pauly");
   var x = request.body.you.body[0].x;
   var y = request.body.you.body[0].y;
-  var Allmovements = ['up','down','left','right'];
-  var AllrandomNumber = Math.floor(Math.random()*Allmovements.length);
-  var currentMove = Allmovements[AllrandomNumber];
+
+  var currentMove = randomMovement(['up','down','left','right']);
 
   if (y === 0) {
-    var movements = ['left','right','down'];
-    var randomnumber = Math.floor(Math.random()*movements.length);
-    currentMove = movements[randomnumber];
+    currentMove = randomMovement(['left','right','down']);
+    if (request.body.you.body[1].y === 1) {
+      currentMove = randomMovement(['left','right']);
+    }
   }
 
   if (y === 10) {
-    var movements = ['left','right','up'];
-    var randomnumber = Math.floor(Math.random()*movements.length);
-    currentMove = movements[randomnumber];
+    currentMove = randomMovement(['left','right','up']);
+    if (request.body.you.body[1].y === 9) {
+      currentMove = randomMovement(['left','right']);
+    }
   }
 
   if (x === 0) {
-    var movements = ['down','right','up'];
-    var randomnumber = Math.floor(Math.random()*movements.length);
-    currentMove = movements[randomnumber];
+    currentMove = randomMovement(['down','right','up']);
+    if (request.body.you.body[1].x === 1) {
+      currentMove = randomMovement(['down','up']);
+    }
   }
 
   if (x === 10) {
-    var movements = ['left','down','up'];
-    var randomnumber = Math.floor(Math.random()*movements.length);
-    currentMove = movements[randomnumber];
+    currentMove = randomMovement(['left','down','up']);
+    if (request.body.you.body[1].x === 9) {
+      currentMove = randomMovement(['down','up']);
+    }
   }
   console.log(currentMove);
   // Response data
