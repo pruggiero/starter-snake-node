@@ -92,10 +92,10 @@ const possibleMovements = (snakebody, othersnakes) => {
     }
     if (snakebody[0].y !== cordinate.y) {
       if (snakebody[0].y + 1 === cordinate.y) {
-        possibleMovements = removePossibleMovement(possibleMovements, 'down');
+        possibleMovements = removePossibleMovement(possibleMovements, 'up');
       }
       if (snakebody[0].y - 1 === cordinate.y) {
-        possibleMovements = removePossibleMovement(possibleMovements, 'up');
+        possibleMovements = removePossibleMovement(possibleMovements, 'down');
       }
     }
   });
