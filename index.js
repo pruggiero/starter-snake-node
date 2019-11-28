@@ -85,13 +85,15 @@ const removePossibleMovement = (possibleMovements, movement) => {
 
 const possibleMovements = (snakebody, othersnakes, board) => {
   var possibleMovements = ['up','down','left','right'];
+  var height = board.height - 1;
+  var width = board.width - 1;
 
   if (snakebody[0].y === 0) {
     possibleMovements = removePossibleMovement(possibleMovements, 'up');
   }
 
 
-  if (snakebody[0].y === board.height - 1) {
+  if (snakebody[0].y === height) {
     possibleMovements = removePossibleMovement(possibleMovements, 'down');
   }
 
@@ -99,7 +101,7 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     possibleMovements = removePossibleMovement(possibleMovements, 'left');
   }
 
-  if (snakebody[0].x === board.width - 1) {
+  if (snakebody[0].x === width) {
     possibleMovements = removePossibleMovement(possibleMovements, 'right');
   }
 
