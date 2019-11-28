@@ -151,19 +151,19 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     if (snakebody[0].x !== snake.body[0].x && snakebody[0].y !== snake.body[0].y) {
       if (snakebody[0].y - 1 === snake.body[0].y && snakebody[0].x === snake.body[0].x - 1) {
         superfuturevision = removePossibleMovement(superfuturevision, 'up');
-        superfuturevision = removePossibleMovement(superfuturevision, 'left');
+        superfuturevision = removePossibleMovement(superfuturevision, 'right');
       }
       if (snakebody[0].y - 1 === snake.body[0].y && snakebody[0].x === snake.body[0].x + 1) {
         superfuturevision = removePossibleMovement(superfuturevision, 'up');
-        superfuturevision = removePossibleMovement(superfuturevision, 'right');
+        superfuturevision = removePossibleMovement(superfuturevision, 'left');
       }
       if (snakebody[0].y + 1 === snake.body[0].y && snakebody[0].x === snake.body[0].x - 1) {
         superfuturevision = removePossibleMovement(superfuturevision, 'down');
-        superfuturevision = removePossibleMovement(superfuturevision, 'left');
+        superfuturevision = removePossibleMovement(superfuturevision, 'right');
       }
       if (snakebody[0].y + 1 === snake.body[0].y && snakebody[0].x === snake.body[0].x + 1) {
         superfuturevision = removePossibleMovement(superfuturevision, 'down');
-        superfuturevision = removePossibleMovement(superfuturevision, 'right');
+        superfuturevision = removePossibleMovement(superfuturevision, 'left');
       }
     }
   });
