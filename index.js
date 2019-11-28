@@ -34,22 +34,34 @@ app.post('/start', (request, response) => {
 
   return response.json(data)
 })
-const randomMovement = (possibleMovements, location) => {
+const randomMovement = (possibleMovements, location, food) => {
   var randomNumber = Math.floor(Math.random()*possibleMovements.length);
+  var movement = possibleMovements[randomNumber];
   if (location[0].x < 5 && possibleMovements.indexOf('right') !== -1) {
-    return 'right';
+    movement = 'right';
   } 
-  else if (location[0].x >= 5 && possibleMovements.indexOf('left') !== -1) {
-    return 'left';
+  if (location[0].x >= 5 && possibleMovements.indexOf('left') !== -1) {
+    movement = 'left';
   } 
-  else if (location[0].y < 5 && possibleMovements.indexOf('down') !== -1) {
-    return 'down';
+  if (location[0].y < 5 && possibleMovements.indexOf('down') !== -1) {
+    movement = 'down';
   } 
-  else if (location[0].y >= 5 && possibleMovements.indexOf('up') !== -1) {
-    return 'up';
-  } else {
-    return possibleMovements[randomNumber];
+  if (location[0].y >= 5 && possibleMovements.indexOf('up') !== -1) {
+    movement = 'up';
   }
+  if (food[0].y < location[0].y && possibleMovements.indexOf('down') !== -1) {
+    movement = 'down';
+  }
+  if (food[0].y > location[0].y && possibleMovements.indexOf('up') !== -1) {
+    movement = 'up';
+  }
+  if (food[0].x < location[0].x && possibleMovements.indexOf('left') !== -1) {
+    movement = 'left';
+  }
+  if (food[0].x > location[0].x && possibleMovements.indexOf('right') !== -1) {
+    movement = 'right';
+  }
+  return movement;
 }
 
 const removePossibleMovement = (possibleMovements, movement) => {
@@ -158,7 +170,7 @@ app.post('/move', (request, response) => {
   console.log(request.body.you.body);
 
   var movements = possibleMovements(request.body.you.body, request.body.board.snakes);
-  var currentMove = randomMovement(movements, request.body.you.body);
+  var currentMove = randomMovement(movements, request.body.you.body, request.body.board.food);
   console.log(currentMove);
   // Response data
   const data = {
