@@ -49,11 +49,9 @@ const removePossibleMovement = (possibleMovements, movement) => {
   return possibleMovements;
 }
 
-const possibleMovements = (snakebody) => {
+const possibleMovements = (snakebody, othersnakes) => {
   var possibleMovements = ['up','down','left','right'];
-  // snakebody.forEach(cordinate => 
-  //   cordinate.x
-  // );
+
   if (snakebody[0].y === 0) {
     possibleMovements = removePossibleMovement(possibleMovements, 'up');
   }
@@ -70,18 +68,50 @@ const possibleMovements = (snakebody) => {
     possibleMovements = removePossibleMovement(possibleMovements, 'right');
   }
 
-  if (snakebody[0].x === snakebody[1].x + 1) {
-    possibleMovements = removePossibleMovement(possibleMovements, 'left');
-  }
-  if (snakebody[0].x === snakebody[1].x - 1) {
-    possibleMovements = removePossibleMovement(possibleMovements, 'right');
-  }
-  if (snakebody[0].y === snakebody[1].y + 1) {
-    possibleMovements = removePossibleMovement(possibleMovements, 'up');
-  }
-  if (snakebody[0].y === snakebody[1].y - 1) {
-    possibleMovements = removePossibleMovement(possibleMovements, 'down');
-  }
+  // if (snakebody[0].x === snakebody[1].x + 1) {
+  //   possibleMovements = removePossibleMovement(possibleMovements, 'left');
+  // }
+  // if (snakebody[0].x === snakebody[1].x - 1) {
+  //   possibleMovements = removePossibleMovement(possibleMovements, 'right');
+  // }
+  // if (snakebody[0].y === snakebody[1].y + 1) {
+  //   possibleMovements = removePossibleMovement(possibleMovements, 'up');
+  // }
+  // if (snakebody[0].y === snakebody[1].y - 1) {
+  //   possibleMovements = removePossibleMovement(possibleMovements, 'down');
+  // }
+
+  snakebody.forEach(cordinate => {
+    if (snakebody[0].x === cordinate.x + 1) {
+      possibleMovements = removePossibleMovement(possibleMovements, 'left');
+    }
+    if (snakebody[0].x === cordinate.x - 1) {
+      possibleMovements = removePossibleMovement(possibleMovements, 'right');
+    }
+    if (snakebody[0].y === cordinate.y + 1) {
+      possibleMovements = removePossibleMovement(possibleMovements, 'up');
+    }
+    if (snakebody[0].y === cordinate.y - 1) {
+      possibleMovements = removePossibleMovement(possibleMovements, 'down');
+    }
+  });
+
+  othersnakes.forEach(snake => {
+    snake.body.forEach(cordinate => {
+      if (snakebody[0].x === cordinate.x + 1) {
+        possibleMovements = removePossibleMovement(possibleMovements, 'left');
+      }
+      if (snakebody[0].x === cordinate.x - 1) {
+        possibleMovements = removePossibleMovement(possibleMovements, 'right');
+      }
+      if (snakebody[0].y === cordinate.y + 1) {
+        possibleMovements = removePossibleMovement(possibleMovements, 'up');
+      }
+      if (snakebody[0].y === cordinate.y - 1) {
+        possibleMovements = removePossibleMovement(possibleMovements, 'down');
+      }
+    });
+  });
 
   // if (possibleMovements === []) {
   //   possibleMovements['up'];
@@ -97,7 +127,7 @@ app.post('/move', (request, response) => {
 
   console.log(request.body.you.body);
 
-  var currentMove = possibleMovements(request.body.you.body);
+  var currentMove = possibleMovements(request.body.you.body, request.body.board.snakes);
 
   console.log(currentMove);
   // Response data
