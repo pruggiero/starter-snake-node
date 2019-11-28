@@ -45,6 +45,8 @@ const removePossibleMovement = (possibleMovements, movement) => {
   console.log(movement);
   if (index > -1) {
     var newarray = possibleMovements.splice(index, 1);
+    console.log("Pauly");
+    console.log(newarray);
     return newarray;
   }
 }
@@ -83,9 +85,9 @@ const possibleMovements = (snakebody) => {
     possibleMovements = removePossibleMovement(possibleMovements, 'down');
   }
 
-  if (possibleMovements === []) {
-    possibleMovements['up'];
-  }
+  // if (possibleMovements === []) {
+  //   possibleMovements['up'];
+  // }
   return randomMovement(possibleMovements);
 }
 
@@ -94,9 +96,6 @@ app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
   console.log(request.body.you.body);
-  console.log("Pauly");
-  var x = request.body.you.body[0].x;
-  var y = request.body.you.body[0].y;
 
   var currentMove = possibleMovements(request.body.you.body);
 
