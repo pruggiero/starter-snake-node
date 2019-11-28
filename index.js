@@ -38,6 +38,9 @@ const randomMovement = (possibleMovements, snake, food) => {
   var location = snake.body;
   var randomNumber = Math.floor(Math.random()*possibleMovements.length);
   var movement = possibleMovements[randomNumber];
+  if (possibleMovements.indexOf('up') !== -1) {
+    movement = 'up';
+  }
   if (possibleMovements.indexOf('right') !== -1) {
     movement = 'right';
   } 
@@ -47,9 +50,7 @@ const randomMovement = (possibleMovements, snake, food) => {
   if (possibleMovements.indexOf('left') !== -1) {
     movement = 'left';
   } 
-  if (possibleMovements.indexOf('up') !== -1) {
-    movement = 'up';
-  }
+
 
   if (food.length > 0 && snake.health < 60) {
     if (food[0].y !== location[0].y) {
