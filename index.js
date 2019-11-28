@@ -52,19 +52,19 @@ app.post('/move', (request, response) => {
 
 
   if (y = 0) {
-    currentMove = 'down'
+    currentMove = 'down';
   }
 
   if (y = 11) {
-    currentMove = 'up'
+    currentMove = 'up';
   }
 
   if (x = 0) {
-    currentMove = 'right'
+    currentMove = 'right';
   }
 
   if (x = 11) {
-    currentMove = 'left'
+    currentMove = 'left';
   }
 
   // Response data
