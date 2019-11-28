@@ -34,9 +34,22 @@ app.post('/start', (request, response) => {
 
   return response.json(data)
 })
-const randomMovement = (possibleMovements) => {
+const randomMovement = (possibleMovements, location) => {
   var randomNumber = Math.floor(Math.random()*possibleMovements.length);
-  return possibleMovements[randomNumber];
+  if (location[0].x < 5 && possibleMovements.indexOf('right') === -1) {
+    return 'right';
+  } 
+  else if (location[0].x >= 5 && possibleMovements.indexOf('left') === -1) {
+    return 'left';
+  } 
+  else if (location[0].y < 5 && possibleMovements.indexOf('down') === -1) {
+    return 'down';
+  } 
+  else if (location[0].y >= 5 && possibleMovements.indexOf('up') === -1) {
+    return 'up';
+  } else {
+    return possibleMovements[randomNumber];
+  }
 }
 
 const removePossibleMovement = (possibleMovements, movement) => {
@@ -67,19 +80,6 @@ const possibleMovements = (snakebody, othersnakes) => {
   if (snakebody[0].x === 10) {
     possibleMovements = removePossibleMovement(possibleMovements, 'right');
   }
-
-  // if (snakebody[0].x === snakebody[1].x + 1) {
-  //   possibleMovements = removePossibleMovement(possibleMovements, 'left');
-  // }
-  // if (snakebody[0].x === snakebody[1].x - 1) {
-  //   possibleMovements = removePossibleMovement(possibleMovements, 'right');
-  // }
-  // if (snakebody[0].y === snakebody[1].y + 1) {
-  //   possibleMovements = removePossibleMovement(possibleMovements, 'up');
-  // }
-  // if (snakebody[0].y === snakebody[1].y - 1) {
-  //   possibleMovements = removePossibleMovement(possibleMovements, 'down');
-  // }
 
   snakebody.forEach(cordinate => {
     if (snakebody[0].x !== cordinate.x) {
@@ -144,14 +144,10 @@ const possibleMovements = (snakebody, othersnakes) => {
     });
   });
 
-  console.log("future");
-  console.log(futurevision);
-  console.log("possibleMovements");
-  console.log(possibleMovements);
   if (futurevision === []) {
-    return randomMovement(possibleMovements);
+    return possibleMovements;
   } else {
-    return randomMovement(futurevision);
+    return futurevision;
   }
 }
 
@@ -161,8 +157,8 @@ app.post('/move', (request, response) => {
 
   console.log(request.body.you.body);
 
-  var currentMove = possibleMovements(request.body.you.body, request.body.board.snakes);
-
+  var possibleMovements = possibleMovements(request.body.you.body, request.body.board.snakes);
+  currentMove = randomMovement(possibleMovements, request.body.you.body);
   console.log(currentMove);
   // Response data
   const data = {
