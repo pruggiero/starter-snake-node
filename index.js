@@ -245,28 +245,28 @@ const possibleMovements = (snake, othersnakes, board) => {
     }
   });
 
-  // var futurevision = superfuturevision.map(x => x);
+  var futurevision = superfuturevision.map(x => x);
 
-  // othersnakes.forEach(snake => {
-  //   snake.body.forEach(cordinate => {
-  //     if (snakebody[0].x !== cordinate.x) {
-  //       if (snakebody[0].x + 2 === cordinate.x && snakebody[0].y === cordinate.y) {
-  //         futurevision = removePossibleMovement(futurevision, 'right');
-  //       }
-  //       if (snakebody[0].x - 2 === cordinate.x && snakebody[0].y === cordinate.y) {
-  //         futurevision = removePossibleMovement(futurevision, 'left');
-  //       }
-  //     }
-  //     if (snakebody[0].y !== cordinate.y) {
-  //       if (snakebody[0].y + 2 === cordinate.y && snakebody[0].x === cordinate.x) {
-  //         futurevision = removePossibleMovement(futurevision, 'down');
-  //       }
-  //       if (snakebody[0].y - 2 === cordinate.y && snakebody[0].x === cordinate.x) {
-  //         futurevision = removePossibleMovement(futurevision, 'up');
-  //       }
-  //     }
-  //   });
-  // });
+  othersnakes.forEach(snake => {
+    snake.body.forEach(cordinate => {
+      if (snakebody[0].x !== cordinate.x) {
+        if (snakebody[0].x + 2 === cordinate.x && snakebody[0].y === cordinate.y) {
+          futurevision = removePossibleMovement(futurevision, 'right');
+        }
+        if (snakebody[0].x - 2 === cordinate.x && snakebody[0].y === cordinate.y) {
+          futurevision = removePossibleMovement(futurevision, 'left');
+        }
+      }
+      if (snakebody[0].y !== cordinate.y) {
+        if (snakebody[0].y + 2 === cordinate.y && snakebody[0].x === cordinate.x) {
+          futurevision = removePossibleMovement(futurevision, 'down');
+        }
+        if (snakebody[0].y - 2 === cordinate.y && snakebody[0].x === cordinate.x) {
+          futurevision = removePossibleMovement(futurevision, 'up');
+        }
+      }
+    });
+  });
 
  // var avoidFood = futurevision.map(x => x);
 
@@ -294,10 +294,9 @@ const possibleMovements = (snake, othersnakes, board) => {
   // if (avoidFood.length > 0 && snake.health > 90 && snake.body.length <= 7) {
   //   return avoidFood;
   // } else 
-  // if (futurevision.length > 0) {
-  //   return futurevision;
-  // } else 
-  if (superfuturevision.length > 0) {
+  if (futurevision.length > 0) {
+    return futurevision;
+  } else if (superfuturevision.length > 0) {
     return superfuturevision;
   } else {
     return possibleMovements;
