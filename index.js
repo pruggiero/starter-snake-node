@@ -103,7 +103,6 @@ const removePossibleMovement = (possibleMovements, movement) => {
 const getNearbyFood = (foods, location) => {
   var closeFood = foods[0];
   var radar = 2;
-  console.log("Pauly");
   foods.forEach(food => {
     radar = 2;
     if (location[0].x + radar === food.x && location[0].y === food.y) {
@@ -158,9 +157,8 @@ const getNearbyFood = (foods, location) => {
     if (location[0].x - radar === food.x && location[0].y + radar === food.y) {
       closeFood = food;
     }
-    console.log("Pauly2");
-    return food;
   });
+  return closeFood;
 }
 
 const possibleMovements = (snake, othersnakes, board) => {
