@@ -112,7 +112,7 @@ const getNearbyFood = (foods, location) => {
     if (location[0].y + radar === food.y && location[0].x === food.x) {
       closeFood = food;
     }
-    if (location[0].y - radar === cordinate.y && location[0].x === food.x) {
+    if (location[0].y - radar === food.y && location[0].x === food.x) {
       closeFood = food;
     }
 
@@ -139,7 +139,7 @@ const getNearbyFood = (foods, location) => {
     if (location[0].y + radar === food.y && location[0].x === food.x) {
       closeFood = food;
     }
-    if (location[0].y - radar === cordinate.y && location[0].x === food.x) {
+    if (location[0].y - radar === food.y && location[0].x === food.x) {
       closeFood = food;
     }
 
