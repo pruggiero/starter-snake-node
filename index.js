@@ -99,7 +99,7 @@ const removePossibleMovement = (possibleMovements, movement) => {
 }
 
 const getNearbyFood = (foods, location) => {
-  var closeFood = food[0];
+  var closeFood = foods[0];
   var radar = 2;
   foods.forEach(food => {
     radar = 2;
