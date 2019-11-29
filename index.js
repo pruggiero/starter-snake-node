@@ -160,29 +160,6 @@ const possibleMovements = (snake, othersnakes, board) => {
     });
   });
 
-  var avoidFood = possibleMovements.map(x => x);
-
-if (food.length > 0 && snake.health > 60) {
-  food.forEach(cordinate => {
-    if (snakebody[0].x !== cordinate.x) {
-      if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
-        avoidFood = removePossibleMovement(avoidFood, 'right');
-      }
-      if (snakebody[0].x - 1 === cordinate.x && snakebody[0].y === cordinate.y) {
-        avoidFood = removePossibleMovement(avoidFood, 'left');
-      }
-    }
-    if (snakebody[0].y !== cordinate.y) {
-      if (snakebody[0].y + 1 === cordinate.y && snakebody[0].x === cordinate.x) {
-        avoidFood = removePossibleMovement(avoidFood, 'down');
-      }
-      if (snakebody[0].y - 1 === cordinate.y && snakebody[0].x === cordinate.x) {
-        avoidFood = removePossibleMovement(avoidFood, 'up');
-      }
-    }
-  });
-}
-
   var superfuturevision = possibleMovements.map(x => x);
 
   othersnakes.forEach(snake => {
@@ -229,12 +206,35 @@ if (food.length > 0 && snake.health > 60) {
     });
   });
 
-  if (futurevision.length > 0) {
+  var avoidFood = superfuturevision.map(x => x);
+
+  if (food.length > 0 && snake.health > 60) {
+    food.forEach(cordinate => {
+      if (snakebody[0].x !== cordinate.x) {
+        if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
+          avoidFood = removePossibleMovement(avoidFood, 'right');
+        }
+        if (snakebody[0].x - 1 === cordinate.x && snakebody[0].y === cordinate.y) {
+          avoidFood = removePossibleMovement(avoidFood, 'left');
+        }
+      }
+      if (snakebody[0].y !== cordinate.y) {
+        if (snakebody[0].y + 1 === cordinate.y && snakebody[0].x === cordinate.x) {
+          avoidFood = removePossibleMovement(avoidFood, 'down');
+        }
+        if (snakebody[0].y - 1 === cordinate.y && snakebody[0].x === cordinate.x) {
+          avoidFood = removePossibleMovement(avoidFood, 'up');
+        }
+      }
+    });
+  }
+
+  if (avoidFood.length > 0) {
+    return avoidFood;
+  } else if (futurevision.length > 0) {
     return futurevision;
   } else if (superfuturevision.length > 0) {
     return superfuturevision;
-  } else if (avoidFood.length > 0) {
-    return avoidFood;   
   } else {
     return possibleMovements;
   }
