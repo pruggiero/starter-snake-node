@@ -208,7 +208,7 @@ const possibleMovements = (snake, othersnakes, board) => {
 
   var avoidFood = superfuturevision.map(x => x);
 
-  if (food.length > 0 && snake.health > 60) {
+  if (food.length > 0 && snake.health > 90) {
     food.forEach(cordinate => {
       if (snakebody[0].x !== cordinate.x) {
         if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
