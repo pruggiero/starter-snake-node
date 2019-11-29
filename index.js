@@ -51,7 +51,7 @@ const randomMovement = (possibleMovements, snake, food) => {
     movement = 'left';
   }
 
-  if (snake.body.length <= 8) {
+  if (snake.body.length <= 10) {
     if (possibleMovements.indexOf('down') !== -1 && location[0].y <= 6) {
       movement = 'down';
     }
@@ -66,7 +66,7 @@ const randomMovement = (possibleMovements, snake, food) => {
     }
   }
 
-  if (food.length > 0 && ((snake.health < 80 && snake.body.length <= 11) || snake.health < 30) ) {
+  if (food.length > 0 && ((snake.health < 80 && snake.body.length <= 10) || snake.health < 30) ) {
     var nearbyFood = food[0];//getNearbyFood(food, location);
     if (nearbyFood.y !== location[0].y) {
       if (nearbyFood.y < location[0].y && possibleMovements.indexOf('up') !== -1) {
