@@ -75,30 +75,12 @@ const randomMovement = (possibleMovements, snake, food) => {
       }
     }
 
-    if (food[0].x !== location[0].x) {
-      if (food[0].x < location[0].x && possibleMovements.indexOf('left') !== -1) {
-        movement = 'left';
-      }
-      if (food[0].x > location[0].x && possibleMovements.indexOf('right') !== -1) {
-        movement = 'right';
-      }
-    }
-  } else {
-    if (food[0].y === location[0].y) {
-      if (food[0].y < location[0].y && possibleMovements.indexOf('down') !== -1) {
-        movement = 'down';
-      }
-      if (food[0].y > location[0].y && possibleMovements.indexOf('up') !== -1) {
-        movement = 'up';
-      }
-    }
-
     if (food[0].x === location[0].x) {
-      if (food[0].x < location[0].x && possibleMovements.indexOf('right') !== -1) {
-        movement = 'right';
-      }
-      if (food[0].x > location[0].x && possibleMovements.indexOf('left') !== -1) {
+      if (possibleMovements.indexOf('left') !== -1) {
         movement = 'left';
+      }
+      if (possibleMovements.indexOf('right') !== -1) {
+        movement = 'right';
       }
     }
   }
@@ -115,15 +97,16 @@ const removePossibleMovement = (possibleMovements, movement) => {
   return possibleMovements;
 }
 
-const possibleMovements = (snakebody, othersnakes, board) => {
+const possibleMovements = (snake, othersnakes, board) => {
   var possibleMovements = ['up','down','left','right'];
   var height = board.height - 1;
   var width = board.width - 1;
+  var food = board.food;
+  var snakebody = snake.body;
 
   if (snakebody[0].y === 0) {
     possibleMovements = removePossibleMovement(possibleMovements, 'up');
   }
-
 
   if (snakebody[0].y === height) {
     possibleMovements = removePossibleMovement(possibleMovements, 'down');
@@ -177,6 +160,29 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     });
   });
 
+  var avoidFood = possibleMovements.map(x => x);
+
+if (food.length > 0 && snake.health > 60) {
+  food.forEach(cordinate => {
+    if (snakebody[0].x !== cordinate.x) {
+      if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
+        avoidFood = removePossibleMovement(avoidFood, 'right');
+      }
+      if (snakebody[0].x - 1 === cordinate.x && snakebody[0].y === cordinate.y) {
+        avoidFood = removePossibleMovement(avoidFood, 'left');
+      }
+    }
+    if (snakebody[0].y !== cordinate.y) {
+      if (snakebody[0].y + 1 === cordinate.y && snakebody[0].x === cordinate.x) {
+        avoidFood = removePossibleMovement(avoidFood, 'down');
+      }
+      if (snakebody[0].y - 1 === cordinate.y && snakebody[0].x === cordinate.x) {
+        avoidFood = removePossibleMovement(avoidFood, 'up');
+      }
+    }
+  });
+}
+
   var superfuturevision = possibleMovements.map(x => x);
 
   othersnakes.forEach(snake => {
@@ -227,8 +233,10 @@ const possibleMovements = (snakebody, othersnakes, board) => {
     return futurevision;
   } else if (superfuturevision.length > 0) {
     return superfuturevision;
+  } else if (avoidFood.length > 0) {
+    return avoidFood;   
   } else {
-    return possibleMovements;   
+    return possibleMovements;
   }
 }
 
@@ -238,7 +246,7 @@ app.post('/move', (request, response) => {
 
   // console.log(request.body.you.body);
 
-  var movements = possibleMovements(request.body.you.body, request.body.board.snakes, request.body.board);
+  var movements = possibleMovements(request.body.you, request.body.board.snakes, request.body.board);
   var currentMove = randomMovement(movements, request.body.you, request.body.board.food);
   console.log(movements);
   console.log(currentMove);
