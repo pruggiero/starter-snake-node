@@ -76,7 +76,7 @@ const randomMovement = (possibleMovements, snake, food) => {
       }
     }
 
-    if (nearbyFood[0].x === location[0].x) {
+    if (nearbyFood.x === location[0].x) {
       if (possibleMovements.indexOf('left') !== -1) {
         movement = 'left';
       }
