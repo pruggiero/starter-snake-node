@@ -208,26 +208,26 @@ const possibleMovements = (snake, othersnakes, board) => {
 
   var avoidFood = superfuturevision.map(x => x);
 
-  if (food.length > 0) {
-    food.forEach(cordinate => {
-      if (snakebody[0].x !== cordinate.x) {
-        if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
-          avoidFood = removePossibleMovement(avoidFood, 'right');
-        }
-        if (snakebody[0].x - 1 === cordinate.x && snakebody[0].y === cordinate.y) {
-          avoidFood = removePossibleMovement(avoidFood, 'left');
-        }
-      }
-      if (snakebody[0].y !== cordinate.y) {
-        if (snakebody[0].y + 1 === cordinate.y && snakebody[0].x === cordinate.x) {
-          avoidFood = removePossibleMovement(avoidFood, 'down');
-        }
-        if (snakebody[0].y - 1 === cordinate.y && snakebody[0].x === cordinate.x) {
-          avoidFood = removePossibleMovement(avoidFood, 'up');
-        }
-      }
-    });
-  }
+  // if (food.length > 0) {
+  //   food.forEach(cordinate => {
+  //     if (snakebody[0].x !== cordinate.x) {
+  //       if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
+  //         avoidFood = removePossibleMovement(avoidFood, 'right');
+  //       }
+  //       if (snakebody[0].x - 1 === cordinate.x && snakebody[0].y === cordinate.y) {
+  //         avoidFood = removePossibleMovement(avoidFood, 'left');
+  //       }
+  //     }
+  //     if (snakebody[0].y !== cordinate.y) {
+  //       if (snakebody[0].y + 1 === cordinate.y && snakebody[0].x === cordinate.x) {
+  //         avoidFood = removePossibleMovement(avoidFood, 'down');
+  //       }
+  //       if (snakebody[0].y - 1 === cordinate.y && snakebody[0].x === cordinate.x) {
+  //         avoidFood = removePossibleMovement(avoidFood, 'up');
+  //       }
+  //     }
+  //   });
+  // }
 
   if (avoidFood.length > 0 && snake.health > 90) {
     return avoidFood;
