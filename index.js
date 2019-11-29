@@ -291,9 +291,10 @@ const possibleMovements = (snake, othersnakes, board) => {
   //   });
   // }
 
-  if (avoidFood.length > 0 && snake.health > 80) {
-    return avoidFood;
-  } else if (futurevision.length > 0) {
+  // if (avoidFood.length > 0 && snake.health > 80) {
+  //   return avoidFood;
+  // } else 
+  if (futurevision.length > 0) {
     return futurevision;
   } else if (superfuturevision.length > 0) {
     return superfuturevision;
