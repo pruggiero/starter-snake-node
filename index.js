@@ -84,7 +84,7 @@ const randomMovement = (possibleMovements, snake, food) => {
       }
     }
   } else {
-    if (food[0].y !== location[0].y) {
+    if (food[0].y === location[0].y) {
       if (food[0].y < location[0].y && possibleMovements.indexOf('down') !== -1) {
         movement = 'down';
       }
@@ -93,7 +93,7 @@ const randomMovement = (possibleMovements, snake, food) => {
       }
     }
 
-    if (food[0].x !== location[0].x) {
+    if (food[0].x === location[0].x) {
       if (food[0].x < location[0].x && possibleMovements.indexOf('right') !== -1) {
         movement = 'right';
       }
