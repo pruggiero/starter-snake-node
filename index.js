@@ -66,16 +66,17 @@ const randomMovement = (possibleMovements, snake, food) => {
 
 
   if (food.length > 0 && snake.health < 60) {
-    if (food[0].y !== location[0].y) {
-      if (food[0].y < location[0].y && possibleMovements.indexOf('up') !== -1) {
+    nearbyFood = getNearbyFood(food, location);
+    if (nearbyFood[0].y !== location[0].y) {
+      if (nearbyFood[0].y < location[0].y && possibleMovements.indexOf('up') !== -1) {
         movement = 'up';
       }
-      if (food[0].y > location[0].y && possibleMovements.indexOf('down') !== -1) {
+      if (nearbyFood[0].y > location[0].y && possibleMovements.indexOf('down') !== -1) {
         movement = 'down';
       }
     }
 
-    if (food[0].x === location[0].x) {
+    if (nearbyFood[0].x === location[0].x) {
       if (possibleMovements.indexOf('left') !== -1) {
         movement = 'left';
       }
@@ -95,6 +96,67 @@ const removePossibleMovement = (possibleMovements, movement) => {
     possibleMovements.splice(index, 1);
   }
   return possibleMovements;
+}
+
+const getNearbyFood = (foods, location) => {
+  var closeFood = food[0];
+  var radar = 2;
+  foods.forEach(food => {
+    radar = 2;
+    if (location[0].x + radar === food.x && location[0].y === food.y) {
+      closeFood = food;
+    }
+    if (location[0].x - radar === food.x && location[0].y === food.y) {
+      closeFood = food;
+    }
+    if (location[0].y + radar === food.y && location[0].x === food.x) {
+      closeFood = food;
+    }
+    if (location[0].y - radar === cordinate.y && location[0].x === food.x) {
+      closeFood = food;
+    }
+
+    if (location[0].x + radar === food.x && location[0].y - radar === food.y) {
+      closeFood = food;
+    }
+    if (location[0].x - radar === food.x && location[0].y - radar === food.y) {
+      closeFood = food;
+    }
+    if (location[0].x + radar === food.x && location[0].y + radar === food.y) {
+      closeFood = food;
+    }
+    if (location[0].x - radar === food.x && location[0].y + radar === food.y) {
+      closeFood = food;
+    }
+
+    radar = 1;
+    if (location[0].x + radar === food.x && location[0].y === food.y) {
+      closeFood = food;
+    }
+    if (location[0].x - radar === food.x && location[0].y === food.y) {
+      closeFood = food;
+    }
+    if (location[0].y + radar === food.y && location[0].x === food.x) {
+      closeFood = food;
+    }
+    if (location[0].y - radar === cordinate.y && location[0].x === food.x) {
+      closeFood = food;
+    }
+
+    if (location[0].x + radar === food.x && location[0].y - radar === food.y) {
+      closeFood = food;
+    }
+    if (location[0].x - radar === food.x && location[0].y - radar === food.y) {
+      closeFood = food;
+    }
+    if (location[0].x + radar === food.x && location[0].y + radar === food.y) {
+      closeFood = food;
+    }
+    if (location[0].x - radar === food.x && location[0].y + radar === food.y) {
+      closeFood = food;
+    }
+    return food;
+  });
 }
 
 const possibleMovements = (snake, othersnakes, board) => {
@@ -208,28 +270,28 @@ const possibleMovements = (snake, othersnakes, board) => {
 
   var avoidFood = superfuturevision.map(x => x);
 
-  // if (food.length > 0) {
-  //   food.forEach(cordinate => {
-  //     if (snakebody[0].x !== cordinate.x) {
-  //       if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
-  //         avoidFood = removePossibleMovement(avoidFood, 'right');
-  //       }
-  //       if (snakebody[0].x - 1 === cordinate.x && snakebody[0].y === cordinate.y) {
-  //         avoidFood = removePossibleMovement(avoidFood, 'left');
-  //       }
-  //     }
-  //     if (snakebody[0].y !== cordinate.y) {
-  //       if (snakebody[0].y + 1 === cordinate.y && snakebody[0].x === cordinate.x) {
-  //         avoidFood = removePossibleMovement(avoidFood, 'down');
-  //       }
-  //       if (snakebody[0].y - 1 === cordinate.y && snakebody[0].x === cordinate.x) {
-  //         avoidFood = removePossibleMovement(avoidFood, 'up');
-  //       }
-  //     }
-  //   });
-  // }
+  if (food.length > 0) {
+    food.forEach(cordinate => {
+      if (snakebody[0].x !== cordinate.x) {
+        if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
+          avoidFood = removePossibleMovement(avoidFood, 'right');
+        }
+        if (snakebody[0].x - 1 === cordinate.x && snakebody[0].y === cordinate.y) {
+          avoidFood = removePossibleMovement(avoidFood, 'left');
+        }
+      }
+      if (snakebody[0].y !== cordinate.y) {
+        if (snakebody[0].y + 1 === cordinate.y && snakebody[0].x === cordinate.x) {
+          avoidFood = removePossibleMovement(avoidFood, 'down');
+        }
+        if (snakebody[0].y - 1 === cordinate.y && snakebody[0].x === cordinate.x) {
+          avoidFood = removePossibleMovement(avoidFood, 'up');
+        }
+      }
+    });
+  }
 
-  if (avoidFood.length > 0 && snake.health > 90) {
+  if (avoidFood.length > 0 && snake.health > 80) {
     return avoidFood;
   } else if (futurevision.length > 0) {
     return futurevision;
