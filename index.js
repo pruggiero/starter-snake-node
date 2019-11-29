@@ -51,18 +51,18 @@ const randomMovement = (possibleMovements, snake, food) => {
     movement = 'left';
   }
 
-  // if (possibleMovements.indexOf('down') !== -1 && location[0].y === 6) {
-  //   movement = 'down';
-  // }
-  // if (possibleMovements.indexOf('right') !== -1 && location[0].x === 4) {
-  //   movement = 'right';
-  // } 
-  // if (possibleMovements.indexOf('up') !== -1 && location[0].y === 4) {
-  //   movement = 'up';
-  // }
-  // if (possibleMovements.indexOf('left') !== -1 && location[0].x === 6) {
-  //   movement = 'left';
-  // }
+  if (possibleMovements.indexOf('down') !== -1 && location[0].y === 6) {
+    movement = 'down';
+  }
+  if (possibleMovements.indexOf('right') !== -1 && location[0].x === 4) {
+    movement = 'right';
+  } 
+  if (possibleMovements.indexOf('up') !== -1 && location[0].y === 4) {
+    movement = 'up';
+  }
+  if (possibleMovements.indexOf('left') !== -1 && location[0].x === 6) {
+    movement = 'left';
+  }
 
 
   if (food.length > 0 && snake.health < 60) {
@@ -208,7 +208,7 @@ const possibleMovements = (snake, othersnakes, board) => {
 
   var avoidFood = superfuturevision.map(x => x);
 
-  if (food.length > 0 && snake.health > 90) {
+  if (food.length > 0) {
     food.forEach(cordinate => {
       if (snakebody[0].x !== cordinate.x) {
         if (snakebody[0].x + 1 === cordinate.x && snakebody[0].y === cordinate.y) {
@@ -229,7 +229,7 @@ const possibleMovements = (snake, othersnakes, board) => {
     });
   }
 
-  if (avoidFood.length > 0) {
+  if (avoidFood.length > 0 && snake.health > 90) {
     return avoidFood;
   } else if (futurevision.length > 0) {
     return futurevision;
