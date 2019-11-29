@@ -67,6 +67,8 @@ const randomMovement = (possibleMovements, snake, food) => {
 
   if (food.length > 0 && snake.health < 60) {
     var nearbyFood = getNearbyFood(food, location);
+    console.log("Pauly3");
+    console.log(nearbyFood);
     if (nearbyFood.y !== location[0].y) {
       if (nearbyFood.y < location[0].y && possibleMovements.indexOf('up') !== -1) {
         movement = 'up';
@@ -101,6 +103,7 @@ const removePossibleMovement = (possibleMovements, movement) => {
 const getNearbyFood = (foods, location) => {
   var closeFood = foods[0];
   var radar = 2;
+  console.log("Pauly");
   foods.forEach(food => {
     radar = 2;
     if (location[0].x + radar === food.x && location[0].y === food.y) {
@@ -155,6 +158,7 @@ const getNearbyFood = (foods, location) => {
     if (location[0].x - radar === food.x && location[0].y + radar === food.y) {
       closeFood = food;
     }
+    console.log("Pauly2");
     return food;
   });
 }
